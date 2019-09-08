@@ -1,0 +1,67 @@
+﻿@model IEnumerable<EjercicioCodeFirstCursos.Models.DtoCurso>
+
+@{
+    ViewData["Title"] = "Índice de cursos";
+}
+
+<h2>Índice de cursos</h2>
+
+<p>
+    <a asp-action="Create">Crear nuevo curso</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destacado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescCategoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+			<td>
+				@if (item.ImagenGuardada != null)
+				{
+					<img bytes-foto="@item.ImagenGuardada" />
+				}
+
+			</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destacado)
+            </td>
+			<td>
+				<time asp-date-time="@item.Fecha"/>
+			</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescCategoria)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CodCurso">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.CodCurso">Ver detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.CodCurso">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+	@await Component.InvokeAsync("Destacado")
+</div>

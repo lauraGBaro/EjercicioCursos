@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenidos a la academia</h1>
+	<p>Para consultar los <a href="@Url.Action("Index","Cursos")">cursos</a> y las <a href="@Url.Action("Index","Categorias")">categorías</a> pulsa en los enlaces</p>
+</div>
+
+<div>
+	@await Component.InvokeAsync("Destacado")
+</div>
+
+

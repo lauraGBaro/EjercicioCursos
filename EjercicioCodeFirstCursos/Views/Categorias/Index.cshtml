@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EjercicioCodeFirstCursos.Models.DtoCategoria>
+
+@{
+    ViewData["Title"] = "Índice de categorías";
+}
+
+<h2>Índice de categorías</h2>
+
+<p>
+    <a asp-action="Create">Crear nueva categoría</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+			<td>
+				@if (item.ImagenGuardada != null)
+				{
+					<img bytes-foto="@item.ImagenGuardada" />
+				}
+			</td>
+            <td>
+				<time asp-date-time="@item.Fecha"/>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CodCategoria">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.CodCategoria">Ver detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.CodCategoria">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
